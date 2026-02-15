@@ -35,7 +35,6 @@ require("telescope").setup {
             "%.env",        -- ignore .env files
             "%.venv",       -- ignore .venv directories
             "node_modules", -- ignore node_modules
-            "%.git",        -- ignore .git
             "dist",         -- ignore dist folder
         },
         vimgrep_arguments = {
@@ -61,6 +60,12 @@ require("telescope").setup {
             theme = "ivy",       -- Or "center", but "ivy" looks great for explorers
             hijack_netrw = true, -- This officially replaces Netrw
             initial_mode = "normal",
+            hidden = { file_browser = true, folder_browser = true },
+            mappings = {
+                ["n"] = {
+                    ["H"] = require("telescope._extensions.file_browser.actions").toggle_hidden,
+                },
+            },
             layout_config = {
                 prompt_position = "bottom",
             },
