@@ -54,6 +54,21 @@ return require('packer').startup(function(use)
             { 'rafamadriz/friendly-snippets' }, -- Optional
         }
     }
+    use({
+        'MeanderingProgrammer/render-markdown.nvim',
+        after = { 'nvim-treesitter' },
+        requires = { 'nvim-tree/nvim-web-devicons', opt = true }, -- if you prefer nvim-web-devicons
+        config = function()
+            require('render-markdown').setup({
+                file_types = { "markdown" },
+
+                condition = function(buf)
+                    -- Only attach to real markdown files
+                    return vim.bo[buf].buftype == ""
+                end,
+            })
+        end,
+    })
     use {
         "windwp/nvim-autopairs",
         event = "InsertEnter",

@@ -17,6 +17,7 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action)
 end)
 
+
 -- Mason Setup
 require('mason').setup({})
 require('mason-lspconfig').setup({
@@ -36,6 +37,8 @@ require('mason-lspconfig').setup({
 vim.lsp.config.clangd = {
     cmd = {
         "clangd",
+        "--pretty",
+        "--header-insertion=iwyu",
         "--background-index",
         "--clang-tidy",
         "--completion-style=detailed",
