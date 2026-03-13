@@ -12,8 +12,11 @@ return require('packer').startup(function(use)
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
     use { 'nvim-telescope/telescope-ui-select.nvim' }
-    use { "nvim-telescope/telescope-file-browser.nvim" }
     use { "catppuccin/nvim", as = "catppuccin" }
+    use {
+        "stevearc/oil.nvim",
+        requires = { "nvim-tree/nvim-web-devicons" },
+    }
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate'

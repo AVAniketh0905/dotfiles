@@ -3,7 +3,6 @@ local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = 'Telescope find files' })
 vim.keymap.set('n', '<C-p>', builtin.git_files, {})
 vim.keymap.set("n", "<leader>ps", builtin.live_grep, { desc = 'Telescope Live Grep' })
-vim.keymap.set("n", "<leader>pv", ":Telescope file_browser path=%:p:h select_buffer=true<CR>")
 
 -- Show diagnostics for the whole workspace
 vim.keymap.set('n', '<leader>dw', function()
@@ -56,23 +55,8 @@ require("telescope").setup {
         ["ui-select"] = {
             require("telescope.themes").get_dropdown {}
         },
-        ["file_browser"] = {
-            theme = "ivy",       -- Or "center", but "ivy" looks great for explorers
-            hijack_netrw = true, -- This officially replaces Netrw
-            initial_mode = "normal",
-            hidden = { file_browser = true, folder_browser = true },
-            mappings = {
-                ["n"] = {
-                    ["H"] = require("telescope._extensions.file_browser.actions").toggle_hidden,
-                },
-            },
-            layout_config = {
-                prompt_position = "bottom",
-            },
-        }
     }
 }
 
 -- Load extensions
 require("telescope").load_extension("ui-select")
-require("telescope").load_extension("file_browser")
