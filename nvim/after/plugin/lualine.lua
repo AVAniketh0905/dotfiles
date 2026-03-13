@@ -32,23 +32,21 @@ require('lualine').setup({
             -- EXTRA: LSP Status (shows which server is active)
             {
                 function()
-                    local msg = 'No LSP'
-                    local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
-                    local clients = vim.lsp.get_active_clients()
-                    if next(clients) == nil then return msg end
-                    for _, client in ipairs(clients) do
-                        local filetypes = client.config.filetypes
-                        if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-                            return client.name
-                        end
+                    local names = {}
+
+                    for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
+                        table.insert(names, client.name)
                     end
-                    return msg
+
+                    if #names == 0 then
+                        return "No LSP"
+                    end
+
+                    return table.concat(names, ", ")
                 end,
-                icon = ' ',
-                color = { fg = '#ffffff', gui = 'bold' },
-            },
-            { 'diagnostics', sources = { 'nvim_diagnostic' } },
-            'filetype',
+                icon = " ",
+                color = { fg = "#ffffff", gui = "bold" },
+            }
         },
         lualine_y = { 'progress' },
         lualine_z = { 'location' },
