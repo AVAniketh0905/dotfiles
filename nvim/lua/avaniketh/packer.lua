@@ -56,6 +56,7 @@ return require('packer').startup(function(use)
             { 'rafamadriz/friendly-snippets' }, -- Optional
         }
     }
+    use { "stevearc/conform.nvim" }
     use({
         'MeanderingProgrammer/render-markdown.nvim',
         after = { 'nvim-treesitter' },

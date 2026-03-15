@@ -4,16 +4,6 @@ local lsp = require('lsp-zero').preset({})
 lsp.on_attach(function(client, bufnr)
     -- Optional: default keymaps
     lsp.default_keymaps({ buffer = bufnr })
-
-    if client.server_capabilities.documentFormattingProvider then
-        vim.api.nvim_create_autocmd("BufWritePre", {
-            buffer = bufnr,
-            callback = function()
-                vim.lsp.buf.format({ async = false })
-            end,
-        })
-    end
-
     vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action)
 end)
 
@@ -54,6 +44,25 @@ vim.diagnostic.config({
     virtual_text = true,
     signs = true,
 })
+
+
+-- Pyright
+vim.lsp.config("pyright", {
+    settings = {
+        python = {
+            analysis = {
+                typeCheckingMode = "strict",
+                autoSearchPaths = true,
+                useLibraryCodeForTypes = true,
+                diagnosticMode = "workspace",
+            },
+        },
+    },
+})
+
+-- Enable servers
+vim.lsp.enable("pyright")
+--
 
 local cmp = require('cmp')
 -- local cmp_select = { behavior = cmp.SelectBehavior.Select }
