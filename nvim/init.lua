@@ -1,2 +1,3 @@
-require("avaniketh")
--- hi
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")
+require("user.config.custom")
