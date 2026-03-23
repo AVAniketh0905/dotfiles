@@ -35,4 +35,4 @@ deleted    = ""
 format = "<[($virtualenv)]($style)> "
 style = "cyan"
 detect_files = ["pyproject.toml"]
-detect_extensions = []
+detect_folders = [".venv"]
