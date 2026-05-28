@@ -1,6 +1,20 @@
 return {
   {
     "neovim/nvim-lspconfig",
+
+    init = function()
+      -- raylib / GLSL shader extensions
+      vim.filetype.add({
+        extension = {
+          vs = "glsl",
+          fs = "glsl",
+          vert = "glsl",
+          frag = "glsl",
+          comp = "glsl",
+        },
+      })
+    end,
+
     opts = {
       servers = {
         pyright = {
@@ -32,6 +46,12 @@ return {
 
             -- for espressif projects
             "--query-driver=/home/avaniketh0905/.espressif/tools/**/bin/*gcc",
+          },
+        },
+
+        glsl_analyzer = {
+          filetypes = {
+            "glsl",
           },
         },
       },
